@@ -1,0 +1,2 @@
+2026-11-14T00:27:34.7413900Z
+PASS: linear campaign: Forest > Necropolis > Forge > real Eclipse 2.5D; three rescues, then Sovereign victory; forge cannot finish campaign; build/health carry into final; transition freezes combat; final camera/sprites; once-only campaign completion/rewards; 4-stage save roundtrip; stage locks; timed stage-specific bosses with phase two; rescue only after boss; safe rescue scene; distance and pause; permanent hero/map unlocks; no duplicate rewards; build carry and healing; boss reward choices; save roundtrip; death/training isolation.

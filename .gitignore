@@ -1,0 +1,30 @@
+# Arquivos locais e caches recriados pela Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Bb]uild/
+[Bb]uilds/
+MemoryCaptures/
+Recordings/
+.vs/
+.idea/
+.vscode/
+.DS_Store
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.opendb
+*.VC.db
+*.unitypackage
+sysinfo.txt
+crashlytics-build.properties
+# Credenciais locais não fazem parte do projeto
+.env
+.env.*
+!.env.example

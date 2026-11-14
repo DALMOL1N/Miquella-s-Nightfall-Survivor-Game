@@ -1,0 +1,2 @@
+2026-11-14T01:57:53.5217920Z
+PASS: bundled Cinzel Decorative and static reading font; Portuguese accents; fitted menu labels; safe canvas at 16:9, 16:10, 4:3 and ultrawide; Main menu, selection, options, return and power up purchase PASS. Power Up hub: main/preparation entry, upgrades, dragon and relic navigation, preview/back paths, persistent build choices and origin return PASS.

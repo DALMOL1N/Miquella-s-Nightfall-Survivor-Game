@@ -1,0 +1,2 @@
+2026-11-14T02:05:27.6058530Z
+PASS: default equipment section; inline weapons/armor/talismans/dragons without submenu jumps; empty equipment slots; locked items and wrong slots rejected; per-hero gear isolation; optional curses; permanent coin purchase preserves loadout; menu/preparation return; real save unchanged.
