@@ -15,6 +15,9 @@ public static class PlaytestBuilder
 
         ProjectBuilder.Prepare();
         ProjectBuilder.Verify();
+        PlayerSettings.fullScreenMode = FullScreenMode.Windowed;
+        PlayerSettings.SetUseDefaultGraphicsAPIs(BuildTarget.StandaloneWindows64, false);
+        PlayerSettings.SetGraphicsAPIs(BuildTarget.StandaloneWindows64, new[] { UnityEngine.Rendering.GraphicsDeviceType.Direct3D11 });
         PlayerSettings.SetScriptingBackend(NamedBuildTarget.Standalone, ScriptingImplementation.Mono2x);
         string output = Path.GetFullPath("../../Playtests-Sem-Codigo/Miquellas-Nightfall-Survivor-Windows/" + NoiteSemFim.GameIdentity.FileName + ".exe");
         Directory.CreateDirectory(Path.GetDirectoryName(output));
