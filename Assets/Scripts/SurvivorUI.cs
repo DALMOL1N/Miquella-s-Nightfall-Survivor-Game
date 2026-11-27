@@ -23,7 +23,21 @@ public sealed partial class SurvivorGame {
   if(state==ScreenState.Result){if(campaignActive){DrawCampaignResult();return;}if(finalBonusPending&&Button("ESCOLHER BÔNUS DO SOBERANO",350,610,580,45,true,true,16))OpenBossReward(4,true);Panel(265,112,750,486);DrawIcon(ArtBank.Icon(15),591,129,98);Text(chestMessage,300,235,680,59,Style(33,gold,TextAnchor.MiddleCenter,true));ResultStat("TEMPO",Clock(time),330);ResultStat("ABATES",kills.ToString(),540);ResultStat("NÍVEL",level.ToString(),750);DrawIcon(ArtBank.Icon(14),459,425,44);Text("+"+runCoins+" moedas   •   Saldo "+save.coins,510,424,410,46,Style(22,gold));DrawRelicResult();if(Button("JOGAR NOVAMENTE",310,507,320,55,true,true)){if(buildLabActive)ApplyLabBuild();else if(elementTraining)StartElementTraining();else if(final3DDemo)StartFinal3DDemo();else StartRun();}if(Button("VOLTAR AO MENU",650,507,320,55))ReturnMenu();}
   if(!string.IsNullOrEmpty(GUI.tooltip)){Frame(1,420,541,440,40);Text(GUI.tooltip,435,545,410,32,Style(14,Color.white,TextAnchor.MiddleCenter));}
  }
- void ResultStat(string name,string value,float x){Frame(1,x,330,170,78);Text(name,x+16,343,138,18,Style(12,gold,TextAnchor.MiddleCenter));Text(value,x+16,366,138,29,Style(29,Color.white,TextAnchor.MiddleCenter,true));}
+ void ResultStat(string name,string value,float x){
+  const float width = 170, top = 351, height = 57, inset = 14;
+  Frame(1, x, top, width, height);
+
+  var headingStyle = Style(14, gold, TextAnchor.MiddleCenter, true);
+  headingStyle.font = MenuReadingFont ?? headingStyle.font;
+  Text(name, x, 325, width, 21, headingStyle);
+
+  var valueStyle = Style(29, Color.white, TextAnchor.MiddleCenter, true);
+  valueStyle.font = headingStyle.font;
+  valueStyle.wordWrap = false;
+  valueStyle.padding = new RectOffset(0, 0, 0, 0);
+  var content = new Rect(x + inset, top, width - 2 * inset, height);
+  GUI.Label(content, value, FitMenuText(value, valueStyle, content.width, content.height));
+ }
  void DrawUpgrades(){Text("NÍVEL "+level,120,118,1040,65,Style(47,gold,TextAnchor.MiddleCenter,true));Text("Escolha seu próximo poder. Teclas 1, 2 ou 3.",120,187,1040,32,Style(17,Color.white,TextAnchor.MiddleCenter));for(int i=0;i<choices.Count;i++){int id=choices[i];float x=110+i*360;Frame(12,x,244,340,310);DrawIcon(id<6&&SignatureWeapon(id)?(WeaponArchetype==5?EquipmentArt.Weapon(8):EquipmentArt.Weapon(WeaponArchetype==4?7:6)):ArtBank.Icon(id<12?id:id==12?9:14),x+125,265,90);string name=id<6?WeaponName(id):id<12?Catalog.Passives[id-6]:id==12?"Recuperação":"Bolsa de Moedas";Text(name,x+26,365,288,55,Style(23,gold,TextAnchor.MiddleCenter,true));Text(id<6?WeaponDescription(id):id<12?Catalog.PassiveText[id-6]:id==12?"Recupera 50 de vida.":"Receba 30 moedas.",x+27,420,286,55,Style(16,Color.white,TextAnchor.MiddleCenter));int rank=id<6?weapons[id]:id<12?passives[id-6]:0;string status=id<12?(rank==0?"NOVO PODER":"NÍVEL "+rank+" → "+(rank+1)):"BÔNUS";if(Button((i+1)+"  •  "+status,x+25,487,290,45,true,true))SelectUpgrade(id);}}
  float WeaponPeriod(int i){int r=weapons[i];if(SignatureWeapon(i))return Mathf.Max(WeaponArchetype==3?.22f:WeaponArchetype==4?.85f:.3f,(WeaponArchetype==3?.64f:WeaponArchetype==4?1.9f:1.1f)-r*.04f)*AttackRate;return (i==0?Mathf.Max(.25f,1.2f-r*.07f):i==1?Mathf.Max(.18f,.95f-r*.07f):i==3?Mathf.Max(1.1f,3.2f-r*.17f):i==4?Mathf.Max(.5f,2.3f-r*.12f):Mathf.Max(.35f,1.65f-r*.1f))*AttackRate;}
  void Slot(int icon,int rank,int cap,float x,float y,float size,bool evolution=false,float recovery=0,string tooltip=""){Frame(evolution?9:8,x,y,size,size);GUI.color=rank>0?Color.white:new Color(.42f,.48f,.5f,.5f);DrawIcon(icon<6&&SignatureWeapon(icon)?(WeaponArchetype==5?EquipmentArt.Weapon(8):EquipmentArt.Weapon(WeaponArchetype==4?7:6)):ArtBank.Icon(icon),x+6,y+6,size-12);GUI.color=Color.white;if(rank>0){if(recovery>0)Rect(x+6,y+6,size-12,(size-12)*Mathf.Clamp01(recovery),new Color(.008f,.02f,.04f,.67f));Frame(14,x+size-23,y+size-24,23,23);Text(evolution?"★":rank.ToString(),x+size-23,y+size-24,23,23,Style(12,gold,TextAnchor.MiddleCenter,true));for(int p=0;p<cap;p++)Rect(x+7+p*(size-14)/cap,y+size-5,(size-14)/cap-1,2,p<rank?gold:new Color(.25f,.28f,.3f));}GUI.Label(new Rect(x,y,size,size),new GUIContent("",tooltip));}
