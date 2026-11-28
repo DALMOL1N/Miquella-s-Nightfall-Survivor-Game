@@ -57,4 +57,5 @@ A mira automática ou manual é escolhida em **Opções**.
 
 As pastas `Library`, `Temp`, `Logs`, `UserSettings` e aplicativos compilados não são versionadas. A Unity recria os arquivos locais ao importar o projeto.
 
-Este repositório contém o projeto editável; não inclui um novo aplicativo compilado.
+OBS!!:
+(A gente concentrou o projeto em um unico pc para fazer os commits e a interface dentro do jogo foram arrumadas)
